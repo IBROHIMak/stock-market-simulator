@@ -34,57 +34,71 @@ body {
 /* Header */
 .header {
     background: var(--secondary-bg);
-    padding: 20px 30px;
+    padding: 15px 20px;
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     box-shadow: var(--shadow);
     border: 1px solid var(--border-color);
-    gap: 30px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
 }
 
 .user-profile {
     display: flex;
     align-items: center;
-}
-
-.profile-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 15px;
+    gap: 10px;
+    padding: 8px 15px;
     background: var(--card-bg);
     border-radius: 8px;
     border: 2px solid var(--border-color);
 }
 
 .profile-icon {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .profile-name {
     font-size: 14px;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 2px;
+    white-space: nowrap;
 }
 
 .logout-btn {
     background: transparent;
     border: none;
     color: var(--accent-red);
-    font-size: 12px;
     cursor: pointer;
-    padding: 0;
-    font-weight: 600;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
+    border-radius: 4px;
 }
 
 .logout-btn:hover {
-    color: #ff5252;
-    text-decoration: underline;
+    background: rgba(255, 23, 68, 0.1);
+    transform: scale(1.1);
 }
 
 .logo h1 {
@@ -97,7 +111,8 @@ body {
 
 .user-info {
     display: flex;
-    gap: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .balance-card, .portfolio-value, .total-profit {
@@ -640,15 +655,149 @@ body {
     .sidebar, .portfolio-sidebar {
         max-height: 400px;
     }
+    
+    .user-info {
+        gap: 15px;
+    }
+    
+    .balance, .value, .profit {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
     .header {
-        flex-direction: column;
-        gap: 20px;
+        padding: 12px 15px;
+        margin-bottom: 15px;
+    }
+    
+    .header-left {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .logo h1 {
+        font-size: 20px;
+    }
+    
+    .user-profile {
+        padding: 6px 12px;
+        gap: 8px;
+    }
+    
+    .profile-icon {
+        font-size: 18px;
+    }
+    
+    .profile-name {
+        font-size: 13px;
     }
     
     .user-info {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    
+    .balance-card, .portfolio-value, .total-profit {
+        flex: 1;
+        align-items: center;
+    }
+    
+    .label {
+        font-size: 10px;
+    }
+    
+    .balance, .value, .profit {
+        font-size: 16px;
+    }
+    
+    .sidebar, .portfolio-sidebar {
+        padding: 15px;
+    }
+    
+    .sidebar h2, .portfolio-sidebar h2 {
+        font-size: 16px;
+    }
+    
+    .chart-section {
+        padding: 15px;
+    }
+    
+    .chart-header h2 {
+        font-size: 16px;
+    }
+    
+    .current-price {
+        font-size: 20px;
+    }
+    
+    .price-change {
+        font-size: 14px;
+        padding: 4px 8px;
+    }
+    
+    #stockChart {
+        height: 250px;
+    }
+    
+    .trading-panel {
+        padding: 15px;
+    }
+    
+    .history-section {
+        padding: 15px;
+    }
+    
+    .history-section h2 {
+        font-size: 16px;
+    }
+    
+    .history-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 18px;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .balance-card, .portfolio-value, .total-profit {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 8px 12px;
+        background: var(--card-bg);
+        border-radius: 6px;
+    }
+    
+    .balance, .value, .profit {
+        font-size: 18px;
+    }
+    
+    .stock-item {
+        padding: 12px;
+    }
+    
+    .chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .chart-info {
         width: 100%;
         justify-content: space-between;
     }
