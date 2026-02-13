@@ -1,5 +1,9 @@
 import { STOCKS, initializeStockHistory, updateStockPrices, getStock, getPriceChange, formatCurrency, formatPercentage } from './stocks.js';
 import { StockChart } from './chart.js';
+import { getCurrentUser, logout, checkAuth } from './auth.js';
+
+// Check authentication
+checkAuth();
 
 // Application state
 const state = {
@@ -7,15 +11,52 @@ const state = {
     portfolio: {}, // { symbol: { quantity, avgPrice } }
     selectedStock: null,
     tradeAction: 'buy',
-    history: []
+    history: [],
+    user: getCurrentUser()
 };
+
+// Load user data from localStorage
+function loadUserData() {
+    const userDataKey = `stockmarket_data_${state.user.username}`;
+    const savedData = localStorage.getItem(userDataKey);
+    
+    if (savedData) {
+        const data = JSON.parse(savedData);
+        state.balance = data.balance || 10000;
+        state.portfolio = data.portfolio || {};
+        state.history = data.history || [];
+    }
+}
+
+// Save user data to localStorage
+function saveUserData() {
+    const userDataKey = `stockmarket_data_${state.user.username}`;
+    const data = {
+        balance: state.balance,
+        portfolio: state.portfolio,
+        history: state.history,
+        lastSaved: new Date().toISOString()
+    };
+    localStorage.setItem(userDataKey, JSON.stringify(data));
+}
 
 // Initialize
 let chart;
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeStockHistory();
+    loadUserData();
     chart = new StockChart('stockChart');
+    
+    // Display user name
+    document.getElementById('profileName').textContent = state.user.name;
+    
+    // Logout button
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+        if (confirm('Chiqishni xohlaysizmi?')) {
+            logout();
+        }
+    });
     
     renderStockList();
     updateUI();
@@ -206,6 +247,7 @@ function executeTrade() {
     
     document.getElementById('quantity').value = 1;
     updateUI();
+    saveUserData();
 }
 
 // Add to history
