@@ -1,5 +1,5 @@
 // Stock data with realistic companies
-const STOCKS = [
+export const STOCKS = [
     {
         symbol: 'AAPL',
         name: 'Apple Inc.',
@@ -73,7 +73,7 @@ const STOCKS = [
 ];
 
 // Initialize stock history
-function initializeStockHistory() {
+export function initializeStockHistory() {
     STOCKS.forEach(stock => {
         stock.history = [];
         // Generate 50 historical points
@@ -92,7 +92,7 @@ function initializeStockHistory() {
 }
 
 // Update stock prices with realistic market simulation
-function updateStockPrices() {
+export function updateStockPrices() {
     STOCKS.forEach(stock => {
         // Geometric Brownian Motion simulation
         const dt = 1 / 252; // Daily time step
@@ -119,12 +119,12 @@ function updateStockPrices() {
 }
 
 // Get stock by symbol
-function getStock(symbol) {
+export function getStock(symbol) {
     return STOCKS.find(s => s.symbol === symbol);
 }
 
 // Calculate price change percentage
-function getPriceChange(stock) {
+export function getPriceChange(stock) {
     if (stock.history.length < 2) return 0;
     const oldPrice = stock.history[0].price;
     const currentPrice = stock.price;
@@ -132,7 +132,7 @@ function getPriceChange(stock) {
 }
 
 // Format currency
-function formatCurrency(amount) {
+export function formatCurrency(amount) {
     return new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -142,7 +142,7 @@ function formatCurrency(amount) {
 }
 
 // Format percentage
-function formatPercentage(value) {
+export function formatPercentage(value) {
     const sign = value >= 0 ? '+' : '';
     return `${sign}${value.toFixed(2)}%`;
 }

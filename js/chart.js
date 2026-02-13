@@ -1,5 +1,5 @@
 // Chart rendering
-class StockChart {
+export class StockChart {
     constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');

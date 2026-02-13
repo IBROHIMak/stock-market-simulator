@@ -1,3 +1,6 @@
+import { STOCKS, initializeStockHistory, updateStockPrices, getStock, getPriceChange, formatCurrency, formatPercentage } from './stocks.js';
+import { StockChart } from './chart.js';
+
 // Application state
 const state = {
     balance: 10000,
