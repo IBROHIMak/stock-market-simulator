@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Stock Market Simulator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>📈 Stock Market Pro</h1>
+            </div>
+            <div class="user-info">
+                <div class="balance-card">
+                    <span class="label">Balans:</span>
+                    <span class="balance" id="balance">$10,000.00</span>
+                </div>
+                <div class="portfolio-value">
+                    <span class="label">Portfolio:</span>
+                    <span class="value" id="portfolioValue">$0.00</span>
+                </div>
+                <div class="total-profit">
+                    <span class="label">Umumiy:</span>
+                    <span class="profit" id="totalProfit">$0.00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Sidebar - Stock List -->
+            <aside class="sidebar">
+                <h2>Aksiyalar Bozori</h2>
+                <div class="stock-list" id="stockList"></div>
+            </aside>
+
+            <!-- Center - Chart and Trading -->
+            <main class="trading-area">
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h2 id="selectedStockName">Aksiya tanlang</h2>
+                        <div class="chart-info">
+                            <span class="current-price" id="chartPrice">$0.00</span>
+                            <span class="price-change" id="chartChange">0.00%</span>
+                        </div>
+                    </div>
+                    <canvas id="stockChart"></canvas>
+                </div>
+
+                <div class="trading-panel">
+                    <div class="trade-form">
+                        <div class="trade-tabs">
+                            <button class="tab-btn active" data-action="buy">Sotib olish</button>
+                            <button class="tab-btn" data-action="sell">Sotish</button>
+                        </div>
+                        <div class="form-group">
+                            <label>Miqdor (dona)</label>
+                            <input type="number" id="quantity" min="1" value="1" placeholder="Nechta aksiya?">
+                        </div>
+                        <div class="form-group">
+                            <label>Umumiy narx</label>
+                            <input type="text" id="totalPrice" readonly value="$0.00">
+                        </div>
+                        <button class="trade-btn buy-btn" id="tradeBtn">Sotib olish</button>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar - Portfolio -->
+            <aside class="portfolio-sidebar">
+                <h2>Mening Portfoliom</h2>
+                <div class="portfolio-list" id="portfolioList">
+                    <div class="empty-portfolio">
+                        <p>Hali aksiya sotib olmagansiz</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Transaction History -->
+        <section class="history-section">
+            <h2>Tranzaksiyalar Tarixi</h2>
+            <div class="history-list" id="historyList">
+                <p class="empty-history">Hali tranzaksiya yo'q</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal for alerts -->
+    <div class="modal" id="alertModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <script src="js/stocks.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
